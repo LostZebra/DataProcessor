@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessor", "DataProcessor\DataProcessor.csproj", "{6ADAA818-3D36-47A2-B198-796DD5F0FDCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessorLib", "DataProcessorLib\DataProcessorLib.csproj", "{832F636C-8A8A-4507-81C8-8DEBD75BA140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessorTest", "DataProcessorTest\DataProcessorTest.csproj", "{62DD1DFE-6797-4320-AE13-340BDE68972E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ADAA818-3D36-47A2-B198-796DD5F0FDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADAA818-3D36-47A2-B198-796DD5F0FDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADAA818-3D36-47A2-B198-796DD5F0FDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADAA818-3D36-47A2-B198-796DD5F0FDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{832F636C-8A8A-4507-81C8-8DEBD75BA140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832F636C-8A8A-4507-81C8-8DEBD75BA140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832F636C-8A8A-4507-81C8-8DEBD75BA140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832F636C-8A8A-4507-81C8-8DEBD75BA140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62DD1DFE-6797-4320-AE13-340BDE68972E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DD1DFE-6797-4320-AE13-340BDE68972E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DD1DFE-6797-4320-AE13-340BDE68972E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DD1DFE-6797-4320-AE13-340BDE68972E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
