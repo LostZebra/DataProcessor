@@ -47,6 +47,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataProcessorLib\DataProcessorLib.csproj">
+      <Project>{832f636c-8a8a-4507-81c8-8debd75ba140}</Project>
+      <Name>DataProcessorLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataProcessorLib
 {
-    public class Class1
+    public enum DataFormat
     {
+        Csv,
+        Excel97To03,
+        Excel07Later
     }
 }

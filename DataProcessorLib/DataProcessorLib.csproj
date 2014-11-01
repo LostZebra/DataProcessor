@@ -39,7 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CsvFile.cs" />
+    <Compile Include="CustomizeEventArgs.cs" />
+    <Compile Include="DataFile.cs" />
+    <Compile Include="EnumTypes.cs" />
+    <Compile Include="ExcelFile07Later.cs" />
+    <Compile Include="ExcelFile97To03.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
