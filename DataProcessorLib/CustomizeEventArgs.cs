@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace DataProcessorLib
 {
-    class DataFileEventArgs : EventArgs
+    public class DataFileEventArgs : EventArgs
     {
         public string FileName { get; private set; }
-        public string Description { get; private set; }
-        public string ExceptionMessage { get; private set; }
+        public string Message { get; private set; }
 
-        public DataFileEventArgs(string fileName, string description, string exceptionMessage)
+        public DataFileEventArgs(string fileName, string message)
         {
-            this.FileName = fileName;
-            this.Description = description;
-            this.ExceptionMessage = exceptionMessage;
+            FileName = fileName;
+            Message = message;
         }
     }
 }

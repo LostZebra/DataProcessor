@@ -5,7 +5,7 @@ namespace DataProcessorLib
 {
     public abstract class DataFile
     {
-        private readonly FileInfo _dataFileInfo;
+        private FileInfo _dataFileInfo;
 
         public long NumOfBytes { get; private set; }
 
@@ -16,6 +16,20 @@ namespace DataProcessorLib
         public string Name { get; private set; }
 
         public bool Existed { get; private set; }
+
+        private EventHandler _fileCreateCompletionHandler;
+
+        public event EventHandler FileCreateCompletionHandler
+        {
+            add
+            {
+                _fileCreateCompletionHandler += value;
+            }
+            remove
+            {
+                _fileCreateCompletionHandler -= value;
+            }
+        }
 
         internal DataFile()
         {
@@ -57,14 +71,15 @@ namespace DataProcessorLib
             }
 
             _dataFileInfo = new FileInfo(fullPath);
-            
-            if ((Existed = _dataFileInfo.Exists) != true) return;
-            
             // File information extraction
-            RetrieveFileInfo();
+            ParentDirectory = _dataFileInfo.DirectoryName;
+            FullPath = _dataFileInfo.FullName;
+            Name = _dataFileInfo.Name;
+            Existed = _dataFileInfo.Exists;
+            NumOfBytes = _dataFileInfo.Exists ? _dataFileInfo.Length : 0;
         }
 
-        public virtual void Create()
+        public void Create()
         {
             if (Existed)
             {
@@ -72,7 +87,12 @@ namespace DataProcessorLib
             }
             _dataFileInfo.Create();
             // File information extraction
-            RetrieveFileInfo();
+            UpdateFileInfo();
+            // Completion
+            if (_fileCreateCompletionHandler != null)
+            {
+                _fileCreateCompletionHandler(this, new DataFileEventArgs(Name, "has been reated!"));
+            }
         }
 
         public virtual void Delete()
@@ -99,13 +119,11 @@ namespace DataProcessorLib
             return string.Format("{0:0.00}KB", fileLength / 1024);
         }
 
-        private void RetrieveFileInfo()
+        private void UpdateFileInfo()
         {
-            NumOfBytes = _dataFileInfo.Length;
-            ParentDirectory = _dataFileInfo.DirectoryName;
-            FullPath = _dataFileInfo.FullName;
-            Name = _dataFileInfo.Name;
+            _dataFileInfo = new FileInfo(_dataFileInfo.FullName);
             Existed = _dataFileInfo.Exists;
+            NumOfBytes = Existed ? _dataFileInfo.Length : 0;
         }
     }
 }
