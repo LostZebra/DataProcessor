@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DataProcessorLib
 {
-    public abstract class DataFile
+    public abstract class DataFile : IComparable<DataFile>, IEquatable<DataFile>
     {
         private FileInfo _dataFileInfo;
 
@@ -112,6 +112,19 @@ namespace DataProcessorLib
                 throw new InvalidOperationException("源文件或目标文件不存在，无法完成移动");
             }
             _dataFileInfo.MoveTo(directory + "\\" + _dataFileInfo.Name);
+        }
+
+        int IComparable<DataFile>.CompareTo(DataFile otherFile)
+        {
+            return CompareUtilities.ReferenceTypeComparer(this, otherFile) ??
+                   CompareUtilities.ValueTypeComparer(Name, otherFile.Name) ??
+                   CompareUtilities.ValueTypeComparer(NumOfBytes, otherFile.NumOfBytes) ??
+                   0;
+        }
+
+        bool IEquatable<DataFile>.Equals(DataFile otherFile)
+        {
+            return Name.Equals(otherFile.Name) && NumOfBytes == otherFile.NumOfBytes;
         }
 
         protected string ConvertToFormatedFileSize(long fileLength)

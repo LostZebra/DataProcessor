@@ -12,6 +12,7 @@ namespace DataProcessorTest
     {
         static void Main(string[] args)
         {
+            /*
             var csvFile = new CsvFile(@"F:\WirelessDialog.csv");
             csvFile.FileCreateCompletionHandler += (sender, e) =>
             {
@@ -19,6 +20,10 @@ namespace DataProcessorTest
             };
             csvFile.Create();
             Console.ReadLine();
+            */
+            const string doubleStr = "$8.9999";
+            double money = doubleStr.CutLeadingCharacters();
+            double processDouble = doubleStr.ToPostDigitsDouble(2);
         }
     }
 }
