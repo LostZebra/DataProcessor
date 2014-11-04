@@ -21,8 +21,8 @@ namespace DataProcessorTest
             csvFile.Create();
             Console.ReadLine();
             */
-            const string doubleStr = "$8.9999";
-            double money = doubleStr.CutLeadingCharacters();
+            const string doubleStr = "$0.9999";
+            // double money = doubleStr.CutLeadingCharacters();
             double processDouble = doubleStr.ToPostDigitsDouble(2);
         }
     }

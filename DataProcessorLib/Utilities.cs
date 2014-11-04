@@ -30,16 +30,31 @@ namespace DataProcessorLib
     {
         public static double ToPostDigitsDouble(this string dataStr, int numberOfDigits)
         {
-            int tempInt = (int)(double.Parse(dataStr) / Math.Pow(0.1, numberOfDigits + 1));
-            int offset = (tempInt % 10) >= 5 ? 10 : 0;
-            tempInt += offset;
-            double tempDouble = tempInt * Math.Pow(0.1, numberOfDigits + 1);
+            double tempDouble = dataStr.CutLeadingCharacters();
+            int tempInt = (int)(tempDouble / Math.Pow(0.1, numberOfDigits + 1));
+            tempInt += (tempInt % 10) >= 5 ? 10 : 0;
+            tempDouble = tempInt * Math.Pow(0.1, numberOfDigits + 1);
             string processedDataStr = tempDouble.ToString("G");
             processedDataStr = processedDataStr.Substring(0, processedDataStr.LastIndexOf(".") + numberOfDigits + 1);
             return double.Parse(processedDataStr);
         }
 
-        public static double CutLeadingCharacters(this string dataStr, int lengthOfLeadingCharaters = 1)
+        public static double CutLeadingCharacters(this string dataStr)
+        {
+            int lengthOfLeadingCharacters = 0;
+            foreach (var ch in dataStr)
+            {
+                if (ch < 48 || ch > 57)
+                {
+                    ++lengthOfLeadingCharacters;
+                    continue;
+                }
+                break;
+            }
+            return dataStr.CutLeadingCharacters(lengthOfLeadingCharacters);
+        }
+
+        public static double CutLeadingCharacters(this string dataStr, int lengthOfLeadingCharaters)
         {
             return double.Parse(dataStr.Substring(lengthOfLeadingCharaters));
         }
