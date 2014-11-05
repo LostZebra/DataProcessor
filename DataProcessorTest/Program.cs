@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using DataProcessorLib;
 
@@ -21,9 +19,8 @@ namespace DataProcessorTest
             csvFile.Create();
             Console.ReadLine();
             */
-            const string doubleStr = "$0.9999";
-            // double money = doubleStr.CutLeadingCharacters();
-            double processDouble = doubleStr.ToPostDigitsDouble(2);
+            var csvFile = new CsvFile(@"C:\WirelessDialog.csv");
+            var headers = csvFile.FetchAllColumnHeaders(csvFile.Open);
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Configuration;
 using System.Collections.Generic;
 // Testing
-using System.Diagnostics;
+// using System.Diagnostics;
 
 namespace DataProcessorLib
 {
@@ -35,7 +34,7 @@ namespace DataProcessorLib
             tempInt += (tempInt % 10) >= 5 ? 10 : 0;
             tempDouble = tempInt * Math.Pow(0.1, numberOfDigits + 1);
             string processedDataStr = tempDouble.ToString("G");
-            processedDataStr = processedDataStr.Substring(0, processedDataStr.LastIndexOf(".") + numberOfDigits + 1);
+            processedDataStr = processedDataStr.Substring(0, processedDataStr.LastIndexOf('.') + numberOfDigits + 1);
             return double.Parse(processedDataStr);
         }
 
@@ -56,7 +55,9 @@ namespace DataProcessorLib
 
         public static double CutLeadingCharacters(this string dataStr, int lengthOfLeadingCharaters)
         {
-            return double.Parse(dataStr.Substring(lengthOfLeadingCharaters));
+            return lengthOfLeadingCharaters == 0
+                ? double.Parse(dataStr)
+                : double.Parse(dataStr.Substring(lengthOfLeadingCharaters));
         }
     }
 }

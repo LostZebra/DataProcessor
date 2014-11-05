@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Text;
 
 namespace DataProcessorLib
 {
@@ -21,14 +23,8 @@ namespace DataProcessorLib
 
         public event EventHandler FileCreateCompletionHandler
         {
-            add
-            {
-                _fileCreateCompletionHandler += value;
-            }
-            remove
-            {
-                _fileCreateCompletionHandler -= value;
-            }
+            add { _fileCreateCompletionHandler += value; }
+            remove { _fileCreateCompletionHandler -= value; }
         }
 
         internal DataFile()
@@ -114,6 +110,15 @@ namespace DataProcessorLib
             _dataFileInfo.MoveTo(directory + "\\" + _dataFileInfo.Name);
         }
 
+        public virtual StreamReader Open()
+        {
+            if (!Existed)
+            {
+                throw new InvalidOperationException("文件不存在，无法打开"); 
+            }
+            return new StreamReader(FullPath, Encoding.Default);
+        }
+
         int IComparable<DataFile>.CompareTo(DataFile otherFile)
         {
             return CompareUtilities.ReferenceTypeComparer(this, otherFile) ??
@@ -129,7 +134,7 @@ namespace DataProcessorLib
 
         protected string ConvertToFormatedFileSize(long fileLength)
         {
-            return string.Format("{0:0.00}KB", fileLength / 1024);
+            return string.Format("{0:0.00}KB", fileLength/1024);
         }
 
         private void UpdateFileInfo()
@@ -138,5 +143,9 @@ namespace DataProcessorLib
             Existed = _dataFileInfo.Exists;
             NumOfBytes = Existed ? _dataFileInfo.Length : 0;
         }
+
+        public abstract List<string> FetchAllColumnHeaders(Func<StreamReader> dataFileProvider);
+        public abstract IEnumerable<string> DataLines(Func<StreamReader> dataFileProvider);
+        public abstract List<string> DataLinesForHeader(Func<StreamReader> dataFileProvider, string header);
     }
 }
